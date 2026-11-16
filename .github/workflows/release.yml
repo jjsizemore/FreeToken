@@ -110,7 +110,7 @@ jobs:
   publish-testpypi:
     needs: build
     if: github.event_name == 'workflow_dispatch' && inputs.testpypi_rehearsal
-    runs-on: ubuntu-latest
+    runs-on: ubicloud-standard-4
     timeout-minutes: 10
     environment: testpypi
     steps:
@@ -142,7 +142,7 @@ jobs:
     needs: build
     # Tag PUSH only -- a workflow_dispatch pointed at a tag ref must never reach PyPI.
     if: github.event_name == 'push' && github.ref_type == 'tag'
-    runs-on: ubuntu-latest
+    runs-on: ubicloud-standard-4
     timeout-minutes: 10
     environment: pypi
     steps:
@@ -173,7 +173,7 @@ jobs:
   github-release:
     needs: build
     if: github.event_name == 'push' && github.ref_type == 'tag'
-    runs-on: ubuntu-latest
+    runs-on: ubicloud-standard-4
     timeout-minutes: 10
     permissions:
       contents: write
